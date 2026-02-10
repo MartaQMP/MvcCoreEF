@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="MvcCoreDepartamentos/MvcCoreDepartamentos.csproj" Id="2403bcb7-7914-444d-b9ce-790a2508c451" />
+  <Project Path="MvcCoreDepartamentos/MvcCoreEFDepartamentos.csproj" Id="2403bcb7-7914-444d-b9ce-790a2508c451" />
   <Project Path="MvcCoreEF/MvcCoreEF.csproj" />
 </Solution>
