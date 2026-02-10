@@ -19,6 +19,10 @@
             border-radius: 5px;
             padding: 2px
         }
+
+        .container-custom {
+            text-align: center
+        }
     </style>
 </head>
 <body>
@@ -44,14 +48,14 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="flex-grow-1">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - MvcCoreDepartamentos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container container-custom">
+            <p>&copy; 2026 - MvcCoreDepartamentos - Marta</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

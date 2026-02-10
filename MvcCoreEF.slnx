@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="MvcCoreDepartamentos/MvcCoreEFDepartamentos.csproj" Id="2403bcb7-7914-444d-b9ce-790a2508c451" />
   <Project Path="MvcCoreEF/MvcCoreEF.csproj" />
+  <Project Path="MvcCoreProceduresEF/MvcCoreProceduresEF.csproj" Id="44695fd8-03c0-4a28-b6fb-0bf56d156962" />
 </Solution>
