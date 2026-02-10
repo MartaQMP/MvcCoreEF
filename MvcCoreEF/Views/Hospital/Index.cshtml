@@ -1,0 +1,57 @@
+﻿@section style {
+    <style>
+        table {
+            margin: auto;
+            width: 70%;
+            text-align: center
+        }
+
+        h4 {
+            text-align: center
+        }
+    </style>
+}
+@model List<Hospital>
+
+<h1>Hospitales Entity Framework</h1>
+<hr />
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id Hospital</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Numero camas</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Hospital hos in Model)
+            {
+                <tr>
+                    <td>@hos.IdHospital</td>
+                    <td>@hos.Nombre</td>
+                    <td>@hos.Direccion</td>
+                    <td>@hos.Telefono</td>
+                    <td>@hos.Camas</td>
+                    <td>
+                        <a asp-controller="Hospital" asp-action="Details" asp-route-idHospital="@hos.IdHospital" class="btn btn-outline-dark">Detalles</a>
+                        <a asp-controller="Hospital" asp-action="Update" asp-route-idHospital="@hos.IdHospital" class="btn btn-outline-secondary">Modificar</a>
+                        <a asp-controller="Hospital" asp-action="Delete" asp-route-idHospital="@hos.IdHospital" class="btn btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div style="text-align:center">
+        <a asp-controller="Hospital" asp-action="Create" class="btn btn-outline-dark">Crear Hospital</a>
+    </div>
+}
+else
+{
+    <h4>@ViewBag.Mensaje</h4>
+}

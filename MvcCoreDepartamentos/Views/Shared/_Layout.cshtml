@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MvcCoreEF</title>
+    <title>@ViewData["Title"] - MvcCoreDepartamentos</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MvcCoreEF.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MvcCoreDepartamentos.styles.css" asp-append-version="true" />
+    @RenderSection("style",false)
     <style>
         h1 {
             background-color: black;
@@ -19,7 +20,6 @@
             padding: 2px
         }
     </style>
-    @RenderSection("style",false)
 </head>
 <body>
     <header>
@@ -33,7 +33,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Hospital" asp-action="Index">Hospitales</a>
+                            <a class="nav-link text-dark" asp-controller="Departamento" asp-action="Index">Departamentos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Departamento" asp-action="Create">Crear departamento</a>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +51,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - MvcCoreEF - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2026 - MvcCoreDepartamentos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

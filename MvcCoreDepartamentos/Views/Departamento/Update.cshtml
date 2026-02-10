@@ -1,0 +1,29 @@
+﻿@section style {
+    <style>
+        form {
+            margin: auto;
+            width: 50%;
+            text-align: center
+        }
+
+        input {
+            text-align: center;
+        }
+    </style>
+}
+@model Departamento
+<h1>Modificar Departamento</h1>
+<hr />
+@if (Model != null)
+{
+    <form method="post">
+        <label class="form-label">Numero Departamento:</label>
+        <input class="form-control" name="dept_no" type="text" value="@Model.Dept_No" disabled />
+        <label class="form-label">Nombre:</label>
+        <input class="form-control" name="nombre" type="text" value="@Model.Nombre" />
+        <label class="form-label">Localidad:</label>
+        <input class="form-control" name="localidad" type="text" value="@Model.Localidad" />
+        <br />
+        <button class="btn btn-outline-dark">Modificar departamento</button>
+    </form>
+}

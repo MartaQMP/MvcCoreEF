@@ -1,0 +1,33 @@
+﻿@section style {
+    <style>
+        form {
+            margin: auto;
+            width: 50%;
+            text-align: center
+        }
+
+        input {
+            text-align: center;
+        }
+    </style>
+}
+@model Hospital
+<h1>Modificar Hospital</h1>
+<hr />
+@if (Model != null)
+{
+    <form method="post">
+        <label class="form-label">Id Hospital:</label>
+        <input class="form-control" name="idHospital" type="text" value="@Model.IdHospital" disabled />
+        <label class="form-label">Nombre:</label>
+        <input class="form-control" name="nombre" type="text" value="@Model.Nombre" />
+        <label class="form-label">Direccion:</label>
+        <input class="form-control" name="direccion" type="text" value="@Model.Direccion" />
+        <label class="form-label">Telefono:</label>
+        <input class="form-control" name="telefono" type="text" value="@Model.Telefono" />
+        <label class="form-label">Camas:</label>
+        <input class="form-control" name="camas" type="text" value="@Model.Camas" />
+        <br />
+        <button class="btn btn-outline-dark">Modificar hospital</button>
+    </form>
+}

@@ -1,0 +1,24 @@
+﻿@model Departamento
+@section style {
+    <style>
+        list-group {
+           display:flex;
+           justify-content:center;
+           width: 40%;
+           margin:auto
+        }
+        p{
+            text-align:center;
+        }
+    </style>
+}
+
+<h1>Detalles</h1>
+<hr />
+<ul class ="list-group">
+    <li class="list-group-item"><strong>Numero Departamento: </strong>@Model.Dept_No </li>
+    <li class="list-group-item"><strong>Nombre: </strong>@Model.Nombre </li>
+    <li class="list-group-item"><strong>Localidad: </strong>@Model.Localidad </li>
+</ul>
+<hr />
+<p><a asp-controller="Departamento" asp-action="Index" class="btn btn-outline-secondary">Volver a departamentos</a></p>

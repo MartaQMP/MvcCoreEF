@@ -1,0 +1,29 @@
+﻿@section style {
+    <style>
+        form {
+            margin: auto;
+            width: 50%;
+            text-align: center
+        }
+
+        input {
+            text-align: center;
+        }
+    </style>
+}
+<h1>Crear Hospital</h1>
+<hr />
+<form method="post">
+    <label class="form-label">Id Hospital:</label>
+    <input class="form-control" name="idHospital" type="text" />
+    <label class="form-label">Nombre:</label>
+    <input class="form-control" name="nombre" type="text" />
+    <label class="form-label">Direccion:</label>
+    <input class="form-control" name="direccion" type="text" />
+    <label class="form-label">Telefono:</label>
+    <input class="form-control" name="telefono" type="text" />
+    <label class="form-label">Numero de camas:</label>
+    <input class="form-control" name="camas" type="text" />
+    <br />
+    <button class="btn btn-outline-dark">Crear Hospital</button>
+</form>

@@ -1,0 +1,49 @@
+﻿@section style {
+    <style>
+        table {
+            margin: auto;
+            width: 70%;
+            text-align: center
+        }
+
+        h4 {
+            text-align: center
+        }
+    </style>
+}
+@model List<Departamento>
+
+<h1>Departamentos Entity Framework</h1>
+<hr />
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Numero Departamento</th>
+                <th>Nombre</th>
+                <th>Localidad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Departamento dept in Model)
+            {
+                <tr>
+                    <td>@dept.Dept_No</td>
+                    <td>@dept.Nombre</td>
+                    <td>@dept.Localidad</td>
+                    <td>
+                        <a asp-controller="Departamento" asp-action="Details" asp-route-dept_no="@dept.Dept_No" class="btn btn-outline-dark">Detalles</a>
+                        <a asp-controller="Departamento" asp-action="Update" asp-route-dept_no="@dept.Dept_No" class="btn btn-outline-secondary">Modificar</a>
+                        <a asp-controller="Departamento" asp-action="Delete" asp-route-dept_no="@dept.Dept_No" class="btn btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>@ViewBag.Mensaje</h4>
+}

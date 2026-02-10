@@ -1,0 +1,20 @@
+﻿@model Hospital
+@section style{
+    <style>
+        ul{
+            display:block;
+        }
+    </style>
+}
+
+<h1>Detalles</h1>
+<hr />
+<p><a asp-controller="Hospital" asp-action="Index">Back</a></p>
+<br />
+<ul class ="list-group">
+    <li class="list-group-item"><strong>Id: </strong>@Model.IdHospital </li>
+    <li class="list-group-item"><strong>Apellido: </strong>@Model.Nombre </li>
+    <li class="list-group-item"><strong>Oficio: </strong>@Model.Direccion </li>
+    <li class="list-group-item"><strong>Salario: </strong>@Model.Telefono </li>
+    <li  class="list-group-item"><strong>Departamento: </strong>@Model.Camas</li>
+</ul>

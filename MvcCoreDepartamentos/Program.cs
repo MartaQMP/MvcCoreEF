@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using MvcCoreEF.Data;
-using MvcCoreEF.Repositories;
+using MvcCoreDepartamentos.Data;
+using MvcCoreDepartamentos.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<RepositoryHospital>();
-string connnectionString = builder.Configuration.GetConnectionString("SqlHospital");
-builder.Services.AddDbContext<HospitalContext>(options => options.UseSqlServer(connnectionString));
+builder.Services.AddTransient<RepositoryDepartamento>();
+string connectionString = builder.Configuration.GetConnectionString("SqlDepartamentos");
+builder.Services.AddDbContext<DepartamentoContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
@@ -29,7 +29,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Hospital}/{action=Index}/{id?}")
+    pattern: "{controller=Departamento}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 
