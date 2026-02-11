@@ -24,8 +24,7 @@ namespace MvcCoreProceduresEF.Controllers
         {
             List<string> especialidades = await this.repo.GetEspecialidadesAsync();
             ViewBag.Especialidades = especialidades;
-            List<Doctor> doctores = await this.repo.GetDoctoresAsync();
-            return View(doctores);
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> Update(string especialidad, int salario, string accion)
@@ -33,7 +32,12 @@ namespace MvcCoreProceduresEF.Controllers
 
             List<string> especialidades = await this.repo.GetEspecialidadesAsync();
             ViewBag.Especialidades = especialidades;
-            if (accion.Equals("procedure"))
+            if (accion.Equals("buscar"))
+            {
+                List<Doctor> doctoresEspecialidad = await this.repo.GetDoctoresEspecialidadAsync(especialidad);
+                return View(doctoresEspecialidad);
+
+            } else if (accion.Equals("procedure"))
             {
                 await this.repo.UpdateSalarioProcedureAsync(especialidad, salario);
             }else

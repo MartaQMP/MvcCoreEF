@@ -66,13 +66,6 @@ namespace MvcCoreProceduresEF.Repositories
             }
         }
 
-        public async Task<List<Doctor>> GetDoctoresAsync()
-        {
-            var consulta = from datos in this.context.Doctores
-                           select datos;
-            return await consulta.ToListAsync();
-        }
-
         public async Task<List<Doctor>> GetDoctoresEspecialidadAsync(string especialidad)
         {
             string sql = "SP_DOCTORES_ESPECIALIDAD @especialidad";
@@ -105,8 +98,8 @@ namespace MvcCoreProceduresEF.Repositories
             foreach (Doctor doc in doctores)
             {
                 doc.Salario = doc.Salario + salario;
-                this.context.SaveChangesAsync();
             }
+            await this.context.SaveChangesAsync();
         }
     }
 }
