@@ -17,17 +17,12 @@ namespace MvcCoreProceduresEF.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        public async Task<IActionResult> Update()
-        {
             List<string> especialidades = await this.repo.GetEspecialidadesAsync();
             ViewBag.Especialidades = especialidades;
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Update(string especialidad, int salario, string accion)
+        public async Task<IActionResult> Index(string especialidad, int salario, string accion)
         {
 
             List<string> especialidades = await this.repo.GetEspecialidadesAsync();
