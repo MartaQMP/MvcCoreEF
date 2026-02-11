@@ -15,7 +15,7 @@ namespace MvcCoreDepartamentos.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Departamento> depts = await this.repo.GetDepartametnosAsync();
+            List<Departamento> depts = await this.repo.GetDepartamentosAsync();
             if(depts == null)
             {
                 ViewBag.Mensaje = "No hay departamentos";

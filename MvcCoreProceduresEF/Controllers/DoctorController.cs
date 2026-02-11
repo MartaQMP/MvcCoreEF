@@ -1,0 +1,49 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MvcCoreEF.Models;
+using MvcCoreProceduresEF.Repositories;
+using System.Threading.Tasks;
+
+namespace MvcCoreProceduresEF.Controllers
+{
+    public class DoctorController : Controller
+    {
+        RepositoryDoctor repo;
+
+        public DoctorController (RepositoryDoctor repo)
+        {
+            this.repo = repo;
+        }
+
+
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Update()
+        {
+            List<string> especialidades = await this.repo.GetEspecialidadesAsync();
+            ViewBag.Especialidades = especialidades;
+            List<Doctor> doctores = await this.repo.GetDoctoresAsync();
+            return View(doctores);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(string especialidad, int salario, string accion)
+        {
+
+            List<string> especialidades = await this.repo.GetEspecialidadesAsync();
+            ViewBag.Especialidades = especialidades;
+            if (accion.Equals("procedure"))
+            {
+                await this.repo.UpdateSalarioProcedureAsync(especialidad, salario);
+            }else
+            {
+                await this.repo.UpdateSalarioAsync(especialidad, salario);
+                
+            }
+            List<Doctor> doctores = await this.repo.GetDoctoresEspecialidadAsync(especialidad);
+            return View(doctores);
+        }
+
+    }
+}

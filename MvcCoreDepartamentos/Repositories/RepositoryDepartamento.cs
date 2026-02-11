@@ -14,7 +14,7 @@ namespace MvcCoreDepartamentos.Repositories
         }
 
 
-        public async Task<List<Departamento>> GetDepartametnosAsync()
+        public async Task<List<Departamento>> GetDepartamentosAsync()
         {
             var consulta = from datos in this.context.Departamentos
                            select datos;

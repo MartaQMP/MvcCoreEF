@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MvcCoreEF.Models;
 using MvcCoreProceduresEF.Models;
 
 namespace MvcCoreProceduresEF.Data
@@ -8,5 +9,6 @@ namespace MvcCoreProceduresEF.Data
         public EnfermoContext(DbContextOptions<EnfermoContext> options): base(options) {}
 
         public DbSet<Enfermo> Enfermos { get; set; }
+        public DbSet<Doctor> Doctores { get; set; }
     }
 }

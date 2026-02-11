@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MvcCoreEF.Models.Doctor>
+@section style{
+    <style>
+        form {
+            margin: auto;
+            width: 50%;
+            text-align: center
+        }
+        input {
+            text-align: center;
+        }
+        option{
+            text-align:center
+        }
+        table {
+            margin: auto;
+            width: 70%;
+            text-align: center
+        }
+    </style>
+}
+@{
+    List<string> especialidades = ViewBag.Especialidades as List<string>;
+}
+
+<h1>Doctores</h1>
+<hr />
+<form method="post">
+    <label class="form-label">Especialidad:</label>
+    <select name="especialidad" class="form-select">
+        @foreach (string espe in especialidades)
+            {
+                <option>@espe</option>                
+            }
+    </select>
+    <label class="form-label">Incremento salarial:</label>
+    <input class="form-control" name="salario"/>
+    <br />
+    <button class="btn btn-outline-primary" name="accion" value="procedure">Incrementar salario Procedure</button>
+    <button class="btn btn-outline-secondary" name="accion" value="noprocedure">Incrementar salario</button>
+</form>
+<hr />
+@if(Model != null){
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HospitalCod)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HospitalCod)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
