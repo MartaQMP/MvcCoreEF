@@ -1,0 +1,36 @@
+﻿@model Empleado
+
+@section style{
+    <style>
+        .row{
+            margin-left: 30%;
+            width: 50%;
+        }
+        div{
+            text-align:center
+        }
+    </style>
+}
+
+<h1>Detalles</h1>
+<hr />
+<div class="row" style="">
+    <div class="col-sm-4"><strong>Id Empleado</strong></div>
+    <div class = "col-sm-6">@Html.DisplayFor(model => model.IdEmpleado)</div>
+    <div class="col-sm-4"><strong>Apellido</strong></div>
+    <div class = "col-sm-6">@Html.DisplayFor(model => model.Apellido)</div>
+    <div class="col-sm-4"><strong>Oficio</strong> </div>
+    <div class = "col-sm-6">@Html.DisplayFor(model => model.Oficio)</div>
+    <div class="col-sm-4"> <strong>Salario</strong></div>
+    <div class = "col-sm-6">@Html.DisplayFor(model => model.Salario) </div>
+    <div class = "col-sm-4"><strong>Id Departamento</strong></div>
+    <div class = "col-sm-6"> @Html.DisplayFor(model => model.IdDepartamento)</div>
+    <div class = "col-sm-4"><strong>Departamento</strong></div>
+    <div class = "col-sm-6">@Html.DisplayFor(model => model.Departamento)</div>
+    <div class = "col-sm-4"><strong>Localidad</strong> </div>
+    <div class = "col-sm-6">@Html.DisplayFor(model => model.Localidad)</div>
+</div>
+<br />
+<div style="text-align: center">
+    <a asp-action="Index" asp-controller="Empleado" class="btn btn-outline-dark">Volver</a>
+</div>

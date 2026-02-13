@@ -1,16 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using MvcCoreProceduresEF.Data;
-using MvcCoreProceduresEF.Repositories;
+using MvcNetCoreEFMultiplesBBDD.Data;
+using MvcNetCoreEFMultiplesBBDD.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<RepositoryEnfermo>();
-builder.Services.AddTransient<RepositoryDoctor>();
 builder.Services.AddTransient<RepositoryEmpleado>();
-string connecionString = builder.Configuration.GetConnectionString("SqlEnfermo");
-builder.Services.AddDbContext<HospitalContext>(options => options.UseSqlServer(connecionString));
+string connectionString = builder.Configuration.GetConnectionString("SqlHospital");
+builder.Services.AddDbContext<HospitalContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
@@ -31,7 +29,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Enfermo}/{action=Index}/{id?}")
+    pattern: "{controller=Empleado}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

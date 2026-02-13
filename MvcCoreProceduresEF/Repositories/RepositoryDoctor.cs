@@ -38,9 +38,9 @@ namespace MvcCoreProceduresEF.Repositories
 {
     public class RepositoryDoctor
     {
-        EnfermoContext context;
+        HospitalContext context;
 
-        public RepositoryDoctor(EnfermoContext context)
+        public RepositoryDoctor(HospitalContext context)
         {
             this.context = context;
         }
@@ -83,7 +83,7 @@ namespace MvcCoreProceduresEF.Repositories
             await this.context.Database.ExecuteSqlRawAsync(sql, pamEsp, pamSal);
         }
 
-        public async Task<List<Doctor>> FindDoctorByEspecialidadAsync(string especialidad)
+        public async Task<List<Doctor>> FindDoctoresByEspecialidadAsync(string especialidad)
         {
             var consulta = from datos in this.context.Doctores
                            where datos.Especialidad == especialidad
@@ -94,7 +94,7 @@ namespace MvcCoreProceduresEF.Repositories
 
         public async Task UpdateSalarioAsync(string especialidad, int salario)
         {
-            List<Doctor> doctores = await this.FindDoctorByEspecialidadAsync(especialidad);
+            List<Doctor> doctores = await this.FindDoctoresByEspecialidadAsync(especialidad);
             foreach (Doctor doc in doctores)
             {
                 doc.Salario = doc.Salario + salario;
