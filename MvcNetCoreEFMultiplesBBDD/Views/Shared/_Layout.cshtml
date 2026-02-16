@@ -21,7 +21,8 @@
         }
 
         .container-custom {
-            text-align: center
+            text-align: center;
+            color: white;
         }
     </style>
 </head>
@@ -39,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Empleado" asp-action="Index">Empleados</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Empleado" asp-action="Create">Crear Empleado</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -49,8 +53,7 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-dark">
         <div class="container-custom">
             &copy; 2026 - MvcNetCoreEFMultiplesBBDD - Marta
         </div>
