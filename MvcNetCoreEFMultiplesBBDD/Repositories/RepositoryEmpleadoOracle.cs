@@ -80,7 +80,7 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
             return await this.context.Empleados.FirstOrDefaultAsync(e => e.IdEmpleado == idEmpleado);
         }
 
-        public async Task CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept)
+        public async Task<int> CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept)
         {
             string sql = "begin ";
             sql += " SP_INSERT_EMPLEADO (:p_apellido, :p_oficio, :p_dir, :p_salario, :p_comision, :p_dept); ";
@@ -92,6 +92,7 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
             OracleParameter pamCom = new OracleParameter(":p_comision", comision);
             OracleParameter pamDept = new OracleParameter(":p_dept", dept);
             await this.context.Database.ExecuteSqlRawAsync(sql, pamApe, pamOfi, pamDir, pamSal, pamCom, pamDept);
+            return 1;
         }
     }
 }

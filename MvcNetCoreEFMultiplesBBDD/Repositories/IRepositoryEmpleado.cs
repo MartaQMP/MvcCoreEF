@@ -7,6 +7,6 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
     {
         Task<List<Empleado>> GetEmpleadosAsync();
         Task<Empleado> GetEmpleadoById(int idEmpleado);
-        Task CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept);
+        Task<int> CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept);
     }
 }

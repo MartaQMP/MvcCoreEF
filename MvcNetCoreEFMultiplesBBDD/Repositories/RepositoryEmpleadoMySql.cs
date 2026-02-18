@@ -69,7 +69,7 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
             return await this.context.Empleados.FirstOrDefaultAsync(e => e.IdEmpleado == idEmpleado);
         }
 
-        public async Task CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept)
+        public async Task<int> CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept)
         {
             string sql = "CALL SP_INSERT_EMPLEADO (@apellido, @oficio, @dir, @salario, @comision, @dept)";
             MySqlParameter pamApe = new MySqlParameter("@apellido", apellido);
@@ -79,6 +79,7 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
             MySqlParameter pamCom = new MySqlParameter("@comision", comision);
             MySqlParameter pamDept = new MySqlParameter("@dept", dept);
             await this.context.Database.ExecuteSqlRawAsync(sql, pamApe, pamOfi, pamDir, pamSal, pamCom, pamDept);
+            return 1;
         }
     }
 }
