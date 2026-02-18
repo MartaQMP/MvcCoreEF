@@ -32,16 +32,14 @@ using System.Data;
 ---------------------
 --INSERTAR EMPLEADO--
 ---------------------
-    CREATE OR REPLACE PROCEDURE SP_INSERT_EMPLEADO 
-    (p_apellido EMP.APELLIDO%TYPE, p_oficio EMP.OFICIO%TYPE, p_dir EMP.DIR%TYPE, p_salario EMP.SALARIO%TYPE, p_comision EMP.COMISION%TYPE, p_dept DEPT.DNOMBRE%TYPE)
+    CREATE OR REPLACE PROCEDURE SP_INSERT_EMPLEADO (p_apellido EMP.APELLIDO%TYPE, p_oficio EMP.OFICIO%TYPE, p_dir EMP.DIR%TYPE, p_salario EMP.SALARIO%TYPE, p_comision EMP.COMISION%TYPE, p_dept DEPT.DNOMBRE%TYPE, p_id OUT EMP.EMP_NO%TYPE )
     AS
-	    p_id EMP.EMP_NO%TYPE;
         p_dept_no EMP.DEPT_NO%TYPE;
     BEGIN
         SELECT MAX(EMP_NO) INTO p_id FROM EMP;
 	    p_id := p_id + 1;
 	    SELECT DEPT_NO INTO p_dept_no FROM DEPT WHERE DNOMBRE=p_dept;
-	    INSERT INTO EMP VALUES(p_id, p_apellido, p_oficio, p_dir, SYSDATE(), P_salario, p_comision, p_dept_no);
+	    INSERT INTO EMP VALUES(p_id, p_apellido, p_oficio, p_dir, SYSDATE, P_salario, p_comision, p_dept_no);
         COMMIT;
     END;
 */
@@ -83,7 +81,7 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
         public async Task<int> CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept)
         {
             string sql = "begin ";
-            sql += " SP_INSERT_EMPLEADO (:p_apellido, :p_oficio, :p_dir, :p_salario, :p_comision, :p_dept); ";
+            sql += " SP_INSERT_EMPLEADO (:p_apellido, :p_oficio, :p_dir, :p_salario, :p_comision, :p_dept, :p_id); ";
             sql += " end;";
             OracleParameter pamApe = new OracleParameter(":p_apellido", apellido);
             OracleParameter pamOfi = new OracleParameter(":p_oficio", oficio);
@@ -91,8 +89,10 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
             OracleParameter pamSal = new OracleParameter(":p_salario", salario);
             OracleParameter pamCom = new OracleParameter(":p_comision", comision);
             OracleParameter pamDept = new OracleParameter(":p_dept", dept);
-            await this.context.Database.ExecuteSqlRawAsync(sql, pamApe, pamOfi, pamDir, pamSal, pamCom, pamDept);
-            return 1;
+            OracleParameter pamId = new OracleParameter(":p_id", OracleDbType.Int32);
+            pamId.Direction = ParameterDirection.Output;
+            await this.context.Database.ExecuteSqlRawAsync(sql, pamApe, pamOfi, pamDir, pamSal, pamCom, pamDept, pamId);
+            return (int)pamId.Value;
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcNetCoreEFMultiplesBBDD.Data;
 using MvcNetCoreEFMultiplesBBDD.Models;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 #region VIEWS
 /*
@@ -32,9 +33,8 @@ using MySql.Data.MySqlClient;
 --INSERTAR EMPLEADO--
 ---------------------
     DELIMITER $$
-    CREATE PROCEDURE SP_INSERT_EMPLEADO(apellido nvarchar(50), oficio nvarchar(50), dir int, salario int, comision int, dept nvarchar(50))
+    CREATE PROCEDURE SP_INSERT_EMPLEADO(apellido nvarchar(50), oficio nvarchar(50), dir int, salario int, comision int, dept nvarchar(50), OUT id int)
     BEGIN
-	        DECLARE id int;
 	        DECLARE dept_no int;
 	        SELECT id = MAX(EMP_NO) FROM EMP;
             SET id = id + 1;
@@ -71,15 +71,17 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
 
         public async Task<int> CreateEmpleado(string apellido, string oficio, int dir, int salario, int comision, string dept)
         {
-            string sql = "CALL SP_INSERT_EMPLEADO (@apellido, @oficio, @dir, @salario, @comision, @dept)";
+            string sql = "CALL SP_INSERT_EMPLEADO (@apellido, @oficio, @dir, @salario, @comision, @dept, @id)";
             MySqlParameter pamApe = new MySqlParameter("@apellido", apellido);
             MySqlParameter pamOfi = new MySqlParameter("@oficio", oficio);
             MySqlParameter pamDir = new MySqlParameter("@dir", dir);
             MySqlParameter pamSal = new MySqlParameter("@salario", salario);
             MySqlParameter pamCom = new MySqlParameter("@comision", comision);
             MySqlParameter pamDept = new MySqlParameter("@dept", dept);
-            await this.context.Database.ExecuteSqlRawAsync(sql, pamApe, pamOfi, pamDir, pamSal, pamCom, pamDept);
-            return 1;
+            MySqlParameter pamId = new MySqlParameter("@id", -1);
+            pamId.Direction = ParameterDirection.Output;
+            await this.context.Database.ExecuteSqlRawAsync(sql, pamApe, pamOfi, pamDir, pamSal, pamCom, pamDept, pamId);
+            return (int)pamId.Value;
         }
     }
 }
