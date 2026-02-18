@@ -35,11 +35,11 @@ using System.Data;
     DELIMITER $$
     CREATE PROCEDURE SP_INSERT_EMPLEADO(apellido nvarchar(50), oficio nvarchar(50), dir int, salario int, comision int, dept nvarchar(50), OUT id int)
     BEGIN
-	        DECLARE dept_no int;
+	        DECLARE dept_id int;
 	        SELECT id = MAX(EMP_NO) FROM EMP;
             SET id = id + 1;
-	        SELECT dept_no = DEPT_NO FROM DEPT WHERE DNOMBRE=@dept;
-	        INSERT INTO EMP VALUES(id, apellido, oficio, dir, NOW(), salario, comision, dept_no);
+	        SELECT dept_id = DEPT_NO FROM DEPT WHERE DNOMBRE=@dept;
+	        INSERT INTO EMP VALUES(id, apellido, oficio, dir, NOW(), salario, comision, dept_id);
     END $$
     DELIMITER ;
 
